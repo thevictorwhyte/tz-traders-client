@@ -95,7 +95,7 @@ const Testimonial = ({
                     Account Manager <br />
                     24/5 customer support <br />
                     Withdrawal process 7 business days <br />
-                    </p>
+                  </p>
                 </div>
                 <div style={{textAlign: 'center'}} className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
                   {/* <span className="testimonial-item-name text-color-high">Basic plan</span>

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import  Button from  '../elements/Button'
-import './Testimonial.scss'
+import './PaymentMethods.scss';
 
 const propTypes = {
   ...SectionTilesProps.types
@@ -59,7 +59,7 @@ const Testimonial = ({
         <div className={innerClasses}>
             <SectionHeader data={sectionHeader} className="center-content" />
             <div className={tilesClasses}>
-                <div style={{ display: 'flex', justifyContent: 'space-evenly'}}>
+                <div className='payment-methods'>
                     <img src='./master_visa_maestro.png' />
                     <img src='./skrill.png' />
                     <img src='./nt.png' />
