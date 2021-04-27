@@ -50,8 +50,8 @@ const FeaturesSplit = ({
   );
 
   const sectionHeader = {
-    title: 'How it works',
-    paragraph: 'The process to start earning wit TZ Traders is easy and straightforward in three steps.'
+    title: 'Core features',
+    paragraph: 'Here is why we are different.'
   };
 
   return (
@@ -67,14 +67,14 @@ const FeaturesSplit = ({
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  Step one
+                  Feature 1
                   </div>
                 <h3 className="mt-0 mb-12">
-                  Register  
+                  Social trading
                   </h3>
                 <p className="m-0">
-                  Create an account with us to get you access to your personal dashboard. You will select one of the affordable packages we offer.
-                  </p>
+                  Automatically copy trades from top ranking traders around the world and watch your invesment grow.                   
+                </p>
               </div>
               <div className={
                 classNames(
@@ -83,14 +83,14 @@ const FeaturesSplit = ({
                 )}
                 data-reveal-container=".split-item">
                 <Image
-                  src={require('./../../assets/images/picture-1.PNG')}
+                  src={require('./../../assets/images/graph_en.png')}
                   alt="Features split 01"
                   width={528}
                   height={396} />
               </div>
             </div>
 
-            <div className="split-item">
+            {/* <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
                   Step two
@@ -109,24 +109,24 @@ const FeaturesSplit = ({
                 )}
                 data-reveal-container=".split-item">
                 <Image
-                  src={require('./../../assets/images/picture-2.PNG')}
+                  src={require('./../../assets/images/invite-friends-bg.jpg')}
                   alt="Features split 02"
                   width={528}
                   height={396} />
               </div>
-            </div>
+            </div> */}
 
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  Lightning fast workflow
+                  Feature 2
                   </div>
                 <h3 className="mt-0 mb-12">
-                  Data-driven insights
+                  Data-driven trading
                   </h3>
                 <p className="m-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
+                  We have access to millions of historical price movements that we use to make informed trading decisions.
+                </p>
               </div>
               <div className={
                 classNames(
@@ -140,7 +140,7 @@ const FeaturesSplit = ({
                   width={528}
                   height={396} />
               </div>
-            </div>
+            </div> 
 
           </div>
         </div>
