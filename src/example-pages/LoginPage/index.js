@@ -27,7 +27,7 @@ const Index = () => {
 
   return (
     <>
-    <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#000000" locale="en" font-color="#8000ff"></coingecko-coin-price-marquee-widget>
+    {/* <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#000000" locale="en" font-color="#8000ff"></coingecko-coin-price-marquee-widget> */}
     <App />
     
     </>

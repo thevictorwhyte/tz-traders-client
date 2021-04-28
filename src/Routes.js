@@ -31,6 +31,8 @@ const WithdrawalPage = lazy(() => import('./example-pages/Withdrawal'))
 
 const Cards3 = lazy(() => import('./example-pages/Cards3'));
 const LandingPage = lazy(() => import('./example-pages/LandingPage'));
+const LoginPage = lazy(() => import('./example-pages/LoginPage'))
+
 const Accordions = lazy(() => import('./example-pages/Accordions'));
 const Modals = lazy(() => import('./example-pages/Modals'));
 const Notifications = lazy(() => import('./example-pages/Notifications'));
@@ -77,7 +79,7 @@ const Routes = () => {
           }>
           <Switch>
             <Redirect exact from="/" to="/home" />
-            <Route path={['/home']}>
+            <Route path={['/home', '/login']}>
               <PresentationLayout>
                 <Switch location={location} key={location.pathname}>
                   <motion.div
@@ -87,6 +89,7 @@ const Routes = () => {
                     variants={pageVariants}
                     transition={pageTransition}>
                     <Route path="/home" component={LandingPage} />
+                    <Route path="/login" component={LoginPage} />
                   </motion.div>
                 </Switch>
               </PresentationLayout>

@@ -1,0 +1,42 @@
+.sign-btn{
+    border-radius: 1000px;
+}
+
+.form__container {
+    width: 60%;
+    height: 500px;
+    // background-color: rgb(43, 43, 43);
+    background-image: url('../../assets//images/singin-bg.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__header {
+        height: 40%;
+        // background-image: url('../../assets//images/singin-bg.jpg');
+        background-color: rgb(51, 51, 51);
+        margin-bottom: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__details {
+        height: 60%;
+        width: 100%;
+        padding: 1rem;
+        background-color: rgb(235, 235, 235);
+        margin-bottom: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.sign-in-form__email {
+    color: transparent;
+    border-bottom: 1px  solid grey;
+    border-radius: 1000px;
+    display: none;
+}

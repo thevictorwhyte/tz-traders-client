@@ -36,7 +36,7 @@ const App = () => {
     <ScrollReveal
       ref={childRef}
       children={() => (
-        <LayoutDefault><Home /></LayoutDefault>
+        <LayoutDefault><Login /></LayoutDefault>
       )} />
   );
 }
