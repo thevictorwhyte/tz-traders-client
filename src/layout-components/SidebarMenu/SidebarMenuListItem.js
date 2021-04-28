@@ -40,13 +40,15 @@ const SidebarMenuListItem = props => {
     paddingLeft = 16 + 20 * depth;
   }
   const style = {
-    paddingLeft
+    paddingLeft,
+    // color: '#fff'
   };
 
   if (children) {
     return (
       <ListItem
         {...rest}
+        
         className={clsx('app-sidebar-item', className)}
         disableGutters>
         <Button
@@ -76,6 +78,7 @@ const SidebarMenuListItem = props => {
         <Button
           activeClassName="active-item"
           color="primary"
+          
           disableRipple
           variant="text"
           className={clsx('app-sidebar-button-wrapper', `depth-${depth}`)}

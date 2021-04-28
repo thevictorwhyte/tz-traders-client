@@ -27,11 +27,14 @@ export default function HeaderUserbox() {
 
   return (
     <Fragment>
+
       <Button
+        borderRadius='none'
         style={{
           height: '100%', 
           width: '100%',
           backgroundColor: '#815EF6', 
+          border: 'none',
           borderRadius: 'none',
         }}
         color="inherit"
@@ -45,7 +48,7 @@ export default function HeaderUserbox() {
           <FontAwesomeIcon icon={['fas', 'angle-down']} className="opacity-5" />
         </span>
       </Button>
-
+      
       <Menu
         anchorEl={anchorEl}
         keepMounted

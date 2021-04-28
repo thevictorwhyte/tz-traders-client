@@ -68,27 +68,29 @@ const Header = props => {
           </Hidden>
 
           
-          {/* <Hidden mdDown>
+          <Hidden >
             <Box className="d-flex align-items-center">
               <Button
                 href="https://uifort.com/template/carolina-react-admin-dashboard-material-ui-free"
                 target="_blank"
                 size="small"
                 variant="contained"
-                color="default"
+                style={{backgroundColor: '#C82333'}}
+                color="primary"
                 className="mr-3">
-                Download now
+                Sell
               </Button>
               <Button
                 href="https://uifort.com/template/carolina-react-admin-dashboard-material-ui-pro"
                 target="_blank"
                 size="small"
                 variant="contained"
+                style={{backgroundColor: '#006600'}}
                 color="primary">
-                View PRO Version
+                Buy
               </Button>
             </Box>
-          </Hidden> */}
+          </Hidden>
           <Box className="d-flex align-items-center" style={{marginLeft: 'auto'}}>
             <HeaderUserbox />
             <Box className="toggle-sidebar-btn-mobile">

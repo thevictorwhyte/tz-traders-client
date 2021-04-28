@@ -9,6 +9,7 @@ import FolderIcon from '@material-ui/icons/FolderOutlined';
 import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PaymentIcon from '@material-ui/icons/Payment';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import GradeTwoTone from '@material-ui/icons/GradeTwoTone';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -41,7 +42,8 @@ var iconsMap = {
   SettingsIcon: SettingsIcon,
   ViewModuleIcon: ViewModuleIcon,
   MonetizationOnIcon: MonetizationOnIcon,
-  PaymentIcon: PaymentIcon
+  PaymentIcon: PaymentIcon,
+  AccountCircleIcon: AccountCircleIcon
 };
 
 export default [
@@ -55,14 +57,52 @@ export default [
     "to": "dashboard"
   },
   {
-    "label": "Invest",
-    "icon": "MonetizationOnIcon",
-    "to": "invest"
+    "label": "My account",
+    "icon": "AccountCircleIcon",
+    "content": [
+      {
+        "label": "Edit profile",
+        "description": "View and make changes to your profile",
+        "to": "profile"
+      },
+      {
+        "label": "Security",
+        "description": "Handle account security issues",
+        "to": "security"
+      }
+    ]
   },
   {
-    "label": "Withdraw",
+    "label": "Deposit",
+    "icon": "MonetizationOnIcon",
+    "content": [
+      {
+        "label": "New request",
+        "description": "View and make changes to your profile",
+        "to": "deposit"
+      },
+      {
+        "label": "History",
+        "description": "Handle account security issues",
+        "to": "deposit"
+      }
+    ]
+  },
+  {
+    "label": "Withdrawal",
     "icon": "PaymentIcon",
-    "to": "withdraw"
+    "content": [
+      {
+        "label": "New request",
+        "description": "View and make changes to your profile",
+        "to": "withdraw"
+      },
+      {
+        "label": "History",
+        "description": "Handle account security issues",
+        "to": "withdraw"
+      }
+    ]
   }
 ]`,
       (key, value) => {
