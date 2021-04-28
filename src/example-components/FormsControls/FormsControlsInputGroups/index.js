@@ -146,6 +146,7 @@ const LivePreviewExample = () => {
                   Weight
                 </FormHelperText>
               </FormControl>
+              
               <FormControl className={clsx(classes.margin, classes.textField)}>
                 <InputLabel htmlFor="standard-adornment-password">
                   Password
@@ -171,6 +172,7 @@ const LivePreviewExample = () => {
                   }
                 />
               </FormControl>
+              
               <FormControl fullWidth className={classes.margin}>
                 <InputLabel htmlFor="standard-adornment-amount">
                   Amount

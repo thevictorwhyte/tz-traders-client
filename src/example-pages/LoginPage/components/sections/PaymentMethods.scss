@@ -1,9 +1,0 @@
-.payment-methods {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-
-    @media (max-width: 767px) {
-        flex-direction: column;
-    }
-}

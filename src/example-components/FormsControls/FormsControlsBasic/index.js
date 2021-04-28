@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
 
-import {
-  Grid,
-  FormControlLabel,
-  Checkbox,
-  Card,
-  MenuItem,
-  TextField,
-  FormControl,
-  FormHelperText,
-  Divider
-} from '@material-ui/core';
+  import {
+    Grid,
+    FormControlLabel,
+    Checkbox,
+    Card,
+    MenuItem,
+    TextField,
+    FormControl,
+    FormHelperText,
+    Divider
+  } from '@material-ui/core';
 
-import { FormLabel, FormGroup } from '@material-ui/core';
+  import { FormLabel, FormGroup } from '@material-ui/core';
 
 const currencies = [
   {
@@ -70,10 +70,11 @@ export default function LivePreviewExample() {
               <Grid item xs={12} lg={6}>
                 <div className="p-3">
                   <TextField
-                    fullWidth
                     className="m-2"
-                    id="standard-basic"
+                     fullWidth
+                   id="standard-basic"
                     label="Standard"
+                    
                   />
                   <TextField
                     fullWidth

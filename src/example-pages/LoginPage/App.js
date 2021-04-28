@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { useLocation, Switch } from 'react-router-dom';
-import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
 
@@ -8,7 +7,6 @@ import ReactGA from 'react-ga';
 import LayoutDefault from './layouts/LayoutDefault';
 
 // Views 
-import Home from './views/Home';
 import Login from './views/Login';
 
 // Initialize Google Analytics

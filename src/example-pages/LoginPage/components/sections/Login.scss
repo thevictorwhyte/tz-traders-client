@@ -1,18 +1,19 @@
-.sign-btn{
-    border-radius: 1000px;
-}
-
 .form__container {
     width: 60%;
-    height: 500px;
+    height: fit-content;
     // background-color: rgb(43, 43, 43);
     background-image: url('../../assets//images/singin-bg.jpg');
     display: flex;
     flex-direction: column;
     justify-content: center;
 
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
     &__header {
-        height: 40%;
+        height: 20vh;
         // background-image: url('../../assets//images/singin-bg.jpg');
         background-color: rgb(51, 51, 51);
         margin-bottom: auto;
@@ -39,4 +40,13 @@
     border-bottom: 1px  solid grey;
     border-radius: 1000px;
     display: none;
+}
+
+.form-control {
+    width: 50%;
+    margin-bottom: .9rem;
+
+    @media (max-width: 767px) {
+        width: 90%;
+    }
 }
