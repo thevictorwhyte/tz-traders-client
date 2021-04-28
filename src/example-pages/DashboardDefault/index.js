@@ -11,12 +11,12 @@ export default function DashboardDefault() {
   return (
     <Fragment>
 
-      <DashboardDefaultSection1 />
+      {/* <DashboardDefaultSection1 /> */}
       <TradingViewWidget 
         width='auto'
         symbol='FX:EURUSD' 
         timezone='Etc/UTC'
-        theme= "light"
+        theme= "Dark"
         style= "1"
         locale= "en"
         toolbar_bg= "#f1f3f6"
@@ -38,7 +38,7 @@ export default function DashboardDefault() {
           "MF@tv-basicstudies"
         ]}
       />
-      <DashboardDefaultSection2 />
+      {/* <DashboardDefaultSection2 /> */}
       {/* <DashboardDefaultSection3 />
       <DashboardDefaultSection4 /> */}
     </Fragment>

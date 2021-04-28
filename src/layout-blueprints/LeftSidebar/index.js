@@ -40,7 +40,7 @@ const LeftSidebar = props => {
     </Fragment>
   );
 };
-
+ 
 LeftSidebar.propTypes = {
   children: PropTypes.node
 };

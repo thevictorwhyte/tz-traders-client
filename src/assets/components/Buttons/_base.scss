@@ -69,7 +69,7 @@
 
 @each $color, $value in $theme-colors {
   .btn-neutral-#{$color} {
-    background: transparentize($value, .85);
+    // background: transparentize($value, .85);
     color: $value;
     border-color: transparent;
 

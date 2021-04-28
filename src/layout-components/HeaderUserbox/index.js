@@ -28,12 +28,18 @@ export default function HeaderUserbox() {
   return (
     <Fragment>
       <Button
+        style={{
+          height: '100%', 
+          width: '100%',
+          backgroundColor: '#815EF6', 
+          borderRadius: 'none',
+        }}
         color="inherit"
          onClick={handleClick}
         className="text-capitalize px-3 text-left btn-inverse d-flex align-items-center">
         <Box>
          {/* <Avatar sizes="44" alt="Emma Taylor" src={avatar5} /> */}
-         <div className="font-weight-bold pt-2 line-height-1">ryan.kent@outlook.com</div>
+         <div style={{fontSize:'1.2rem'}} className="font-weight-bold pt-2 line-height-1">USD 0.00</div>
         </Box>
         <span className="pl-1 pl-xl-3">
           <FontAwesomeIcon icon={['fas', 'angle-down']} className="opacity-5" />
