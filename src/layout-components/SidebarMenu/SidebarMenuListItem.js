@@ -41,7 +41,8 @@ const SidebarMenuListItem = props => {
   }
   const style = {
     paddingLeft,
-    // color: '#fff'
+    color: '#5658DD',
+    fontWeight: 'bold'
   };
 
   if (children) {

@@ -76,7 +76,7 @@ const SidebarMenu = props => {
   return (
     <Component {...rest} className={className}>
       {title && (
-        <Typography style={{color: '#fff'}} className="app-sidebar-heading">{title}</Typography>
+        <Typography  style={{color: '#fff'}}className="app-sidebar-heading">{title}</Typography>
       )}
       <SidebarMenuList depth={0} pages={pages} router={router} />
     </Component>

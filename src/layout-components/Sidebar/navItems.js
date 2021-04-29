@@ -54,7 +54,13 @@ export default [
   {
     "label": "Dashboard",
     "icon": "DashboardTwoToneIcon",
-    "to": "dashboard"
+    "content": [
+      {
+        "label": "Personal Dashboard",
+        "description": "Your personal dashboard",
+        "to": "/dashboard"
+      }
+    ]
   },
   {
     "label": "My account",
@@ -63,12 +69,12 @@ export default [
       {
         "label": "Edit profile",
         "description": "View and make changes to your profile",
-        "to": "profile"
+        "to": "/profile"
       },
       {
         "label": "Security",
         "description": "Handle account security issues",
-        "to": "security"
+        "to": "/security"
       }
     ]
   },
@@ -79,12 +85,12 @@ export default [
       {
         "label": "New request",
         "description": "View and make changes to your profile",
-        "to": "deposit"
+        "to": "/invest"
       },
       {
         "label": "History",
         "description": "Handle account security issues",
-        "to": "deposit"
+        "to": "/invest"
       }
     ]
   },
@@ -95,12 +101,23 @@ export default [
       {
         "label": "New request",
         "description": "View and make changes to your profile",
-        "to": "withdraw"
+        "to": "/withdraw"
       },
       {
         "label": "History",
         "description": "Handle account security issues",
-        "to": "withdraw"
+        "to": "/withdraw"
+      }
+    ]
+  },
+  {
+    "label": "Logout",
+    "icon": "PaymentIcon",
+    "content": [
+      {
+        "label": "Logout",
+        "description": "View and make changes to your profile",
+        "to": "/logout"
       }
     ]
   }
