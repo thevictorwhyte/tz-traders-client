@@ -29,7 +29,6 @@ export default function HeaderUserbox() {
     <Fragment>
 
       <Button
-        borderRadius='none'
         style={{
           height: '100%', 
           width: '100%',

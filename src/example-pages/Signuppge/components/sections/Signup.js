@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch }  from 'react-redux';
+import { useHistory } from 'react-router';
+import { setCurrentUserStartAsync } from '../../../../redux/user/user.actions';
+
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -13,7 +14,6 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import StreetviewIcon from '@material-ui/icons/Streetview';
 import EmailIcon from '@material-ui/icons/Email';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 
 import { countryList } from './data/countires';
 
@@ -74,7 +74,7 @@ const investmentOptions = [
   {
     value: 'MT5',
     label: 'MT5 (Forex, CFDs on stocks, Equity indices, Metals, Energies'
-  },
+  }
 ]
 
 const currencies = [
@@ -114,20 +114,28 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-
-  const [videoModalActive, setVideomodalactive] = useState(false);
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [videoModalActive, setVideomodalactive] = useState(false);  
+  const [handleShowPassword, togglePassword] = useState({
     showPassword: false
+  })
+  const [values, setValues] = React.useState({
+    firstName: '',
+    lastName: '',
+    password: '',
+    country: '',
+    zipCode: '',
+    email: '',
+    accountType: '',
+    accountCurrency: ''
   });
 
   const classes = useStyles();
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
+    console.log(values)
   };
 
   const outerClasses = classNames(
@@ -146,12 +154,13 @@ const Hero = ({
   );
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    togglePassword({ ...handleShowPassword, showPassword: !handleShowPassword.showPassword });
   };
 
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
+
 
   return (
     <section
@@ -180,7 +189,7 @@ const Hero = ({
                 <OutlinedInput
                   // id="outlined-adornment-amount"
                   // value={values.amount}
-                  //onChange={handleChange('amount')}
+                  onChange={handleChange('firstName')}
                   endAdornment={
                     <InputAdornment position="end">
                       <AccountCircleIcon />
@@ -199,7 +208,7 @@ const Hero = ({
                 <OutlinedInput
                   // id="outlined-adornment-amount"
                   // value={values.amount}
-                  //onChange={handleChange('amount')}
+                  onChange={handleChange('lastName')}
                   endAdornment={
                     <InputAdornment position="end">
                       <AccountCircleIcon />
@@ -210,7 +219,6 @@ const Hero = ({
               </FormControl>
 
               <TextField
-
                     className='form-control'
                     variant='outlined'
                     id="standard-select-currency"
@@ -218,7 +226,7 @@ const Hero = ({
                     label="Select country"
                     defaultValue='Afghanistan'
                     // value={currency}
-                    // onChange={handleChange}
+                    onChange={handleChange('country')}
                     helperText="Please select your country">
                     {countryList.map(country => (
                       <MenuItem key={country} value={country}>
@@ -235,7 +243,7 @@ const Hero = ({
                     <OutlinedInput
                       // id="outlined-adornment-amount"
                       // value={values.amount}
-                      //onChange={handleChange('amount')}
+                      onChange={handleChange('zipCode')}
                       endAdornment={
                         <InputAdornment position="end">
                           <StreetviewIcon />
@@ -254,7 +262,7 @@ const Hero = ({
                     <OutlinedInput
                       // id="outlined-adornment-amount"
                       // value={values.amount}
-                      //onChange={handleChange('amount')}
+                      onChange={handleChange('email')}
                       endAdornment={
                         <InputAdornment position="end">
                           <EmailIcon />
@@ -273,7 +281,7 @@ const Hero = ({
                   </InputLabel>
                   <OutlinedInput  
                     // id="standard-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
+                    type={handleShowPassword.showPassword ? 'text' : 'password'}
                     value={values.password}
                     onChange={handleChange('password')}
                     endAdornment={
@@ -282,7 +290,7 @@ const Hero = ({
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}>
-                        {values.showPassword ? (
+                        {handleShowPassword.showPassword ? (
                           <Visibility />
                         ) : (
                           <VisibilityOff />
@@ -305,7 +313,7 @@ const Hero = ({
                 label="Select account type"
                 // defaultValue='USD'
                 // value={currency}
-                // onChange={handleChange}
+                onChange={handleChange('accountType')}
                 // helperText="Please select your preffered account currency"
                 >
                 {accountTypes.map(accountType => (
@@ -325,7 +333,7 @@ const Hero = ({
                 label="Select investment option"
                 // defaultValue='USD'
                 // value={currency}
-                // onChange={handleChange}
+                // onChange={handleChange('accountType')}
                 // helperText="Please select your preffered account currency"
                 >
                 {investmentOptions.map(investmentOption => (
@@ -344,7 +352,7 @@ const Hero = ({
                     label="Select account  currency"
                     defaultValue='USD'
                     // value={currency}
-                    // onChange={handleChange}
+                    onChange={handleChange('accountCurrency')}
                     helperText="Please select your preffered account currency">
                     {currencies.map(currency => (
                       <MenuItem key={currency.value} value={currency.value}>
@@ -353,7 +361,7 @@ const Hero = ({
                     ))}
               </TextField>
               
-              <Button tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light sign-btn' wideMobile href="https://cruip.com/">
+              <Button onClick={() => dispatch(setCurrentUserStartAsync(values, history))} tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light sign-btn' wideMobile>
                 Create an account
               </Button>
 

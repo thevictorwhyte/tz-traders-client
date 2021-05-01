@@ -1,6 +1,7 @@
 {
   "name": "tz-traders",
   "version": "1.0.0",
+  "proxy": "http://localhost:3000",
   "title": "Carolina React Admin Dashboard with Material-UI Free",
   "description": "This free React admin template is powered by Material-UI components framework and features a clean and fresh design following Google&#39;s Material Design specifications.",
   "author": {
@@ -21,6 +22,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.42",
     "apexcharts": "^3.26.1",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "clsx": "^1.1.0",
     "framer-motion": "^1.8.4",
@@ -38,12 +40,15 @@
     "react-ionicons": "^3.1.4",
     "react-leaflet": "^2.6.1",
     "react-perfect-scrollbar": "^1.5.8",
-    "react-redux": "^7.2.0",
+    "react-redux": "^7.2.4",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "react-tradingview-widget": "^1.3.2",
-    "redux": "^4.0.5"
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

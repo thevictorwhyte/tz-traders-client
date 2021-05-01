@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+
+import { loginUser } from '../../../../redux/user/user.actions';
+
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ButtonGroup from '../elements/ButtonGroup';
@@ -49,14 +54,15 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [videoModalActive, setVideomodalactive] = useState(false);
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
+  const [handleShowPassword, togglePassword] = useState({
     showPassword: false
+  });
+  const [values, setValues] = React.useState({
+    email: '',
+    password: ''
   });
 
   const openModal = (e) => {
@@ -74,7 +80,7 @@ const Hero = ({
   };
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    togglePassword({ ...handleShowPassword, showPassword: !handleShowPassword.showPassword });
   };
 
   const handleMouseDownPassword = event => {
@@ -135,7 +141,7 @@ const Hero = ({
                     <OutlinedInput
                       // id="outlined-adornment-amount"
                       // value={values.amount}
-                      //onChange={handleChange('amount')}
+                      onChange={handleChange('email')}
                       endAdornment={
                         <InputAdornment position="end">
                           <EmailIcon />
@@ -155,7 +161,7 @@ const Hero = ({
                   </InputLabel>
                   <OutlinedInput  
                     // id="standard-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
+                    type={handleShowPassword.showPassword ? 'text' : 'password'}
                     value={values.password}
                     onChange={handleChange('password')}
                     endAdornment={
@@ -164,7 +170,7 @@ const Hero = ({
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}>
-                        {values.showPassword ? (
+                        {handleShowPassword.showPassword ? (
                           <Visibility />
                         ) : (
                           <VisibilityOff />
@@ -177,7 +183,9 @@ const Hero = ({
                 />
               </FormControl>
               
-              <Button tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light' wideMobile href="https://cruip.com/">
+              <Button onClick={() => {
+                dispatch(loginUser(values, history))
+              }} tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light' wideMobile>
                 Log in
               </Button>
               <span className="text-xxs text-color-primary fw-400">Forgot password?</span>
