@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 // import configureStore from './config/configureStore';4
 import { store, persistor } from './redux/store'
 import { Provider } from 'react-redux';
@@ -257,21 +258,20 @@ library.add(
 
 // const store = configureStore();
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <BrowserRouter basename="/">
-          <PersistGate persistor={persistor}>
-            <CssBaseline />
-            <ScrollToTop>
-              <Routes />
-            </ScrollToTop>
-          </PersistGate>
-        </BrowserRouter>
-      </Provider>
-    );
-  }
+const App = () => {
+
+  return (
+    <Provider store={store}>
+      <BrowserRouter basename="/">
+        <PersistGate persistor={persistor}>
+          <CssBaseline />
+          <ScrollToTop>
+            <Routes />
+          </ScrollToTop>
+        </PersistGate>
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
 export default App;

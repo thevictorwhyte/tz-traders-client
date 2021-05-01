@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { connect }  from 'react-redux';
+import { useHistory } from 'react-router'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,7 +16,14 @@ import {
 } from '@material-ui/core';
 
 import avatar5 from '../../assets/images/avatars/avatar5.jpg';
-export default function HeaderUserbox() {
+const HeaderUserbox = props => { 
+  const history = useHistory();
+  const { firstName, 
+          lastName, 
+          accountBalance, 
+          accountCurrency,
+          email 
+        } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -41,7 +50,7 @@ export default function HeaderUserbox() {
         className="text-capitalize px-3 text-left btn-inverse d-flex align-items-center">
         <Box>
          {/* <Avatar sizes="44" alt="Emma Taylor" src={avatar5} /> */}
-         <div style={{fontSize:'1.2rem'}} className="font-weight-bold pt-2 line-height-1">USD 0.00</div>
+         <div style={{fontSize:'1.2rem'}} className="font-weight-bold pt-2 line-height-1">{`${accountCurrency} ${accountBalance === 0 ? '0.00' : accountBalance}`}</div>
         </Box>
         <span className="pl-1 pl-xl-3">
           <FontAwesomeIcon icon={['fas', 'angle-down']} className="opacity-5" />
@@ -70,15 +79,19 @@ export default function HeaderUserbox() {
             </Box>
             <div className="pl-3  pr-3">
               <div className="font-weight-bold text-center pt-2 line-height-1">
-                Ryan Kent
+                {`${firstName} ${lastName}`}
               </div>
               <span className="text-black-50 text-center">
-                ryan.kent@outlook.com
+                {email}
               </span>
             </div>
             <Divider className="w-100 mt-2" />
-            <ListItem button>Invest</ListItem>
-            <ListItem button>Withdraw</ListItem>
+            <ListItem button onClick={() => {
+              history.push('deposit')
+            }}>Deposit</ListItem>
+            <ListItem button onClick={() => {
+              history.push('withdraw')
+            }}>Withdraw</ListItem>
             <ListItem button>Log out</ListItem>
             {/* <Divider className="w-100" />
             <ListItem className="d-block rounded-bottom px-3 pt-3 pb-0 text-center">
@@ -96,3 +109,13 @@ export default function HeaderUserbox() {
     </Fragment>
   );
 }
+
+const mapStateToProps = state => ({
+  firstName: state.user.currentUser.firstName,
+  lastName: state.user.currentUser.lastName,
+  accountCurrency: state.user.currentUser.accountCurrency,
+  accountBalance: state.user.currentUser.accountBalance,
+  email: state.user.currentUser.email
+})
+
+export default connect(mapStateToProps, null)(HeaderUserbox)

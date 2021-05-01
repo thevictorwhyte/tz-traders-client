@@ -119,7 +119,7 @@ const Hero = ({
   const [videoModalActive, setVideomodalactive] = useState(false);  
   const [handleShowPassword, togglePassword] = useState({
     showPassword: false
-  })
+  });
   const [values, setValues] = React.useState({
     firstName: '',
     lastName: '',

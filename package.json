@@ -1,7 +1,6 @@
 {
   "name": "tz-traders",
   "version": "1.0.0",
-  "proxy": "http://localhost:3000",
   "title": "Carolina React Admin Dashboard with Material-UI Free",
   "description": "This free React admin template is powered by Material-UI components framework and features a clean and fresh design following Google&#39;s Material Design specifications.",
   "author": {

@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useHistory }  from 'react-router'
 import TradingViewWidget  from 'react-tradingview-widget';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,11 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import { PageTitle } from '../../layout-components';
-
-import DashboardDefaultSection1 from '../../example-components/DashboardDefault/DashboardDefaultSection1';
-import DashboardDefaultSection2 from '../../example-components/DashboardDefault/DashboardDefaultSection2';
-import DashboardDefaultSection3 from '../../example-components/DashboardDefault/DashboardDefaultSection3';
-import DashboardDefaultSection4 from '../../example-components/DashboardDefault/DashboardDefaultSection4';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,11 +46,13 @@ function a11yProps(index) {
 }
 
 export default function DashboardDefault() {
+  const history = useHistory();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Fragment>
        <AppBar position="static" color="default">

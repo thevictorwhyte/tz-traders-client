@@ -1,5 +1,9 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
+import ProtectedRoute from './ProtectedRoute';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { ThemeProvider } from '@material-ui/styles';
@@ -43,8 +47,10 @@ const ApexCharts = lazy(() => import('./example-pages/ApexCharts'));
 const Maps = lazy(() => import('./example-pages/Maps'));
 const ListGroups = lazy(() => import('./example-pages/ListGroups'));
 
-const Routes = () => {
+const Routes = (props) => {
+  const { loggedIn } = props;
   const location = useLocation();
+
 
   const pageVariants = {
     initial: {
@@ -100,7 +106,7 @@ const Routes = () => {
             <Route
               path={[
                 '/dashboard',
-                '/invest',
+                '/deposit',
                 '/withdraw',
                 '/Buttons',
                 '/Dropdowns',
@@ -132,45 +138,50 @@ const Routes = () => {
                     exit="out"
                     variants={pageVariants}
                     transition={pageTransition}>
-                    <Route
+                    <ProtectedRoute
                       path="/dashboard"
+                      loggedIn={loggedIn}
                       component={DashboardDefault}
                     />
-                    <Route
-                      path="/invest"
+                    <ProtectedRoute
+                      path="/deposit"
+                      loggedIn={loggedIn}
                       component={InvestPage}
                     />
-                    <Route
+                    <ProtectedRoute
                       path="/withdraw"
+                      loggedIn={loggedIn}
                       component={WithdrawalPage}
                     />
-                    <Route path="/Buttons" component={Buttons} />
-                    <Route path="/Dropdowns" component={Dropdowns} />
-                    <Route
+                    <ProtectedRoute path="/Buttons" loggedIn={loggedIn} component={Buttons} />
+                    <ProtectedRoute path="/Dropdowns" loggedIn={loggedIn} component={Dropdowns} />
+                    <ProtectedRoute
                       path="/NavigationMenus"
+                      loggedIn={loggedIn}
                       component={NavigationMenus}
                     />
-                    <Route path="/ProgressBars" component={ProgressBars} />
-                    <Route path="/Pagination" component={Pagination} />
-                    <Route path="/Scrollable" component={Scrollable} />
-                    <Route path="/Badges" component={Badges} />
-                    <Route path="/Icons" component={Icons} />
-                    <Route
+                    <ProtectedRoute path="/ProgressBars" loggedIn={loggedIn} component={ProgressBars} />
+                    <ProtectedRoute path="/Pagination" loggedIn={loggedIn} component={Pagination} />
+                    <ProtectedRoute path="/Scrollable" loggedIn={loggedIn} component={Scrollable} />
+                    <ProtectedRoute path="/Badges" loggedIn={loggedIn} component={Badges} />
+                    <ProtectedRoute path="/Icons" loggedIn={loggedIn} component={Icons} />
+                    <ProtectedRoute
                       path="/UtilitiesHelpers"
+                      loggedIn={loggedIn}
                       component={UtilitiesHelpers}
                     />
-                    <Route path="/Cards3" component={Cards3} />
-                    <Route path="/Accordions" component={Accordions} />
-                    <Route path="/Modals" component={Modals} />
-                    <Route path="/Notifications" component={Notifications} />
-                    <Route path="/Popovers" component={Popovers} />
-                    <Route path="/Tabs" component={Tabs} />
-                    <Route path="/RegularTables1" component={RegularTables1} />
-                    <Route path="/RegularTables4" component={RegularTables4} />
-                    <Route path="/FormsControls" component={FormsControls} />
-                    <Route path="/ApexCharts" component={ApexCharts} />
-                    <Route path="/Maps" component={Maps} />
-                    <Route path="/ListGroups" component={ListGroups} />
+                    <ProtectedRoute path="/Cards3" loggedIn={loggedIn} component={Cards3} />
+                    <ProtectedRoute path="/Accordions" loggedIn={loggedIn} component={Accordions} />
+                    <ProtectedRoute path="/Modals" loggedIn={loggedIn} component={Modals} />
+                    <ProtectedRoute path="/Notifications" loggedIn={loggedIn} component={Notifications} />
+                    <ProtectedRoute path="/Popovers" loggedIn={loggedIn} component={Popovers} />
+                    <ProtectedRoute path="/Tabs" loggedIn={loggedIn} component={Tabs} />
+                    <ProtectedRoute path="/RegularTables1" loggedIn={loggedIn} component={RegularTables1} />
+                    <ProtectedRoute path="/RegularTables4" loggedIn={loggedIn} component={RegularTables4} />
+                    <ProtectedRoute path="/FormsControls" loggedIn={loggedIn} component={FormsControls} />
+                    <ProtectedRoute path="/ApexCharts" loggedIn={loggedIn} component={ApexCharts} />
+                    <ProtectedRoute path="/Maps" loggedIn={loggedIn}component={Maps} />
+                    <ProtectedRoute path="/ListGroups" loggedIn={loggedIn} component={ListGroups} />
                   </motion.div>
                 </Switch>
               </LeftSidebar>
@@ -182,4 +193,8 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+const mapStateToProps = state => ({
+  loggedIn: state.user.userLoggedIn
+})
+
+export default connect(mapStateToProps, null)(Routes);

@@ -85,12 +85,12 @@ export default [
       {
         "label": "New request",
         "description": "View and make changes to your profile",
-        "to": "/invest"
+        "to": "/deposit"
       },
       {
         "label": "History",
         "description": "Handle account security issues",
-        "to": "/invest"
+        "to": "/deposit"
       }
     ]
   },

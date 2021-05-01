@@ -1,6 +1,5 @@
 import { userTypes } from './user.types';
 import axios from 'axios';
-import { useHistory } from 'react-router';
 
 export const setCurrentUserStart = () => ({
     type: userTypes.SET_CURRENT_USER_START
@@ -15,15 +14,17 @@ export const setCurrentUserFailure = () => ({
   type: userTypes.SET_CURRENT_USER_FAILURE
 });
 
+export const  logOutCurrentUser = () => ({
+    type: userTypes.LOG_OUT_USER
+})
+
 export const setCurrentUserStartAsync = (userData, history) => {
 
     return dispatch => {
         dispatch(setCurrentUserStart());
-        console.log(process.env)
 
-        axios.post('http://localhost:3000/v1/auth/register', userData)
+        axios.post(`${process.env.REACT_APP_API_URL}/v1/auth/register`, userData)
             .then(result => {
-                console.log(result)
                 dispatch(setCurrentUserSuccess(result.data.user))
                 history.push('dashboard')
             })
@@ -39,7 +40,7 @@ export const loginUser = (userData, history) => {
     return dispatch => {
         dispatch(setCurrentUserStart())
 
-        axios.post('http://localhost:3000/v1/auth/login', userData)
+        axios.post(`${process.env.REACT_APP_API_URL}/v1/auth/login`, userData)
             .then(result => {
                 dispatch(setCurrentUserSuccess(result.data.user))
                 history.push('dashboard')
@@ -50,5 +51,14 @@ export const loginUser = (userData, history) => {
                     console.log(err)
                 }
             })
+    }
+}
+
+export const logoutUser = (history) => {
+
+    return dispatch => {
+        history.push('home')
+        dispatch(logOutCurrentUser())
+        
     }
 }
