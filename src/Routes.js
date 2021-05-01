@@ -14,38 +14,15 @@ import MuiTheme from './theme';
 
 import { LeftSidebar, PresentationLayout } from './layout-blueprints';
 
-// Example Pages
-
-import Buttons from './example-pages/Buttons';
-import Dropdowns from './example-pages/Dropdowns';
-import NavigationMenus from './example-pages/NavigationMenus';
-import ProgressBars from './example-pages/ProgressBars';
-import Pagination from './example-pages/Pagination';
-import Scrollable from './example-pages/Scrollable';
-import Badges from './example-pages/Badges';
-import Icons from './example-pages/Icons';
-import UtilitiesHelpers from './example-pages/UtilitiesHelpers';
-import RegularTables1 from './example-pages/RegularTables1';
-import RegularTables4 from './example-pages/RegularTables4';
-import FormsControls from './example-pages/FormsControls';
 
 const DashboardDefault = lazy(() => import('./example-pages/DashboardDefault'));
 const InvestPage = lazy(() => import('./example-pages/Invest'));
 const WithdrawalPage = lazy(() => import('./example-pages/Withdrawal'))
 
-const Cards3 = lazy(() => import('./example-pages/Cards3'));
 const LandingPage = lazy(() => import('./example-pages/LandingPage'));
 const LoginPage = lazy(() => import('./example-pages/LoginPage'));
 const SignupPage  = lazy(() => import('./example-pages/Signuppge'))
 
-const Accordions = lazy(() => import('./example-pages/Accordions'));
-const Modals = lazy(() => import('./example-pages/Modals'));
-const Notifications = lazy(() => import('./example-pages/Notifications'));
-const Popovers = lazy(() => import('./example-pages/Popovers'));
-const Tabs = lazy(() => import('./example-pages/Tabs'));
-const ApexCharts = lazy(() => import('./example-pages/ApexCharts'));
-const Maps = lazy(() => import('./example-pages/Maps'));
-const ListGroups = lazy(() => import('./example-pages/ListGroups'));
 
 const Routes = (props) => {
   const { loggedIn } = props;
@@ -107,28 +84,7 @@ const Routes = (props) => {
               path={[
                 '/dashboard',
                 '/deposit',
-                '/withdraw',
-                '/Buttons',
-                '/Dropdowns',
-                '/NavigationMenus',
-                '/ProgressBars',
-                '/Pagination',
-                '/Scrollable',
-                '/Badges',
-                '/Icons',
-                '/UtilitiesHelpers',
-                '/Cards3',
-                '/Accordions',
-                '/Modals',
-                '/Notifications',
-                '/Popovers',
-                '/Tabs',
-                '/RegularTables1',
-                '/RegularTables4',
-                '/FormsControls',
-                '/ApexCharts',
-                '/Maps',
-                '/ListGroups'
+                '/withdraw'
               ]}>
               <LeftSidebar>
                 <Switch location={location} key={location.pathname}>
@@ -153,35 +109,6 @@ const Routes = (props) => {
                       loggedIn={loggedIn}
                       component={WithdrawalPage}
                     />
-                    <ProtectedRoute path="/Buttons" loggedIn={loggedIn} component={Buttons} />
-                    <ProtectedRoute path="/Dropdowns" loggedIn={loggedIn} component={Dropdowns} />
-                    <ProtectedRoute
-                      path="/NavigationMenus"
-                      loggedIn={loggedIn}
-                      component={NavigationMenus}
-                    />
-                    <ProtectedRoute path="/ProgressBars" loggedIn={loggedIn} component={ProgressBars} />
-                    <ProtectedRoute path="/Pagination" loggedIn={loggedIn} component={Pagination} />
-                    <ProtectedRoute path="/Scrollable" loggedIn={loggedIn} component={Scrollable} />
-                    <ProtectedRoute path="/Badges" loggedIn={loggedIn} component={Badges} />
-                    <ProtectedRoute path="/Icons" loggedIn={loggedIn} component={Icons} />
-                    <ProtectedRoute
-                      path="/UtilitiesHelpers"
-                      loggedIn={loggedIn}
-                      component={UtilitiesHelpers}
-                    />
-                    <ProtectedRoute path="/Cards3" loggedIn={loggedIn} component={Cards3} />
-                    <ProtectedRoute path="/Accordions" loggedIn={loggedIn} component={Accordions} />
-                    <ProtectedRoute path="/Modals" loggedIn={loggedIn} component={Modals} />
-                    <ProtectedRoute path="/Notifications" loggedIn={loggedIn} component={Notifications} />
-                    <ProtectedRoute path="/Popovers" loggedIn={loggedIn} component={Popovers} />
-                    <ProtectedRoute path="/Tabs" loggedIn={loggedIn} component={Tabs} />
-                    <ProtectedRoute path="/RegularTables1" loggedIn={loggedIn} component={RegularTables1} />
-                    <ProtectedRoute path="/RegularTables4" loggedIn={loggedIn} component={RegularTables4} />
-                    <ProtectedRoute path="/FormsControls" loggedIn={loggedIn} component={FormsControls} />
-                    <ProtectedRoute path="/ApexCharts" loggedIn={loggedIn} component={ApexCharts} />
-                    <ProtectedRoute path="/Maps" loggedIn={loggedIn}component={Maps} />
-                    <ProtectedRoute path="/ListGroups" loggedIn={loggedIn} component={ListGroups} />
                   </motion.div>
                 </Switch>
               </LeftSidebar>

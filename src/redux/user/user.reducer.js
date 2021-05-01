@@ -1,7 +1,20 @@
 import { userTypes } from './user.types';
 
 const initialState = {
-    currentUser: null,
+    currentUser: {
+        accountBalance: 0,
+        accountCurrency: "",
+        accountType: "",
+        country: "",
+        email: "",
+        firstName: "",
+        id: "",
+        investments: [],
+        isEmailVerified: false,
+        lastName: "",
+        role: "",
+        zipCode: ""
+    },
     userLoggedIn: false
 };
 
@@ -16,7 +29,7 @@ const userReducer =  (state=initialState, action) => {
         case userTypes.LOG_OUT_USER:
             return {
                 ...state,
-                currentUser: null,
+                currentUser: initialState.currentUser,
                 userLoggedIn: false
             }
         default:

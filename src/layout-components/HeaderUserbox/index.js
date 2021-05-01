@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react';
-import { connect }  from 'react-redux';
-import { useHistory } from 'react-router'
+import { connect, useDispatch }  from 'react-redux';
+import { useHistory } from 'react-router';
+
+import { logoutUser } from '../../redux/user/user.actions';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -18,6 +21,7 @@ import {
 import avatar5 from '../../assets/images/avatars/avatar5.jpg';
 const HeaderUserbox = props => { 
   const history = useHistory();
+  const dispatch = useDispatch();
   const { firstName, 
           lastName, 
           accountBalance, 
@@ -92,7 +96,9 @@ const HeaderUserbox = props => {
             <ListItem button onClick={() => {
               history.push('withdraw')
             }}>Withdraw</ListItem>
-            <ListItem button>Log out</ListItem>
+            <ListItem button onClick={() => {
+              dispatch(logoutUser(history))
+            }}>Log out</ListItem>
             {/* <Divider className="w-100" />
             <ListItem className="d-block rounded-bottom px-3 pt-3 pb-0 text-center">
               <Tooltip arrow title="Twitter">
@@ -111,11 +117,11 @@ const HeaderUserbox = props => {
 }
 
 const mapStateToProps = state => ({
-  firstName: state.user.currentUser.firstName,
-  lastName: state.user.currentUser.lastName,
-  accountCurrency: state.user.currentUser.accountCurrency,
-  accountBalance: state.user.currentUser.accountBalance,
-  email: state.user.currentUser.email
+  firstName: state.user.currentUser.firstName || '',
+  lastName: state.user.currentUser.lastName || '',
+  accountCurrency: state.user.currentUser.accountCurrency || '',
+  accountBalance: state.user.currentUser.accountBalance || 0,
+  email: state.user.currentUser.email || ''
 })
 
 export default connect(mapStateToProps, null)(HeaderUserbox)
