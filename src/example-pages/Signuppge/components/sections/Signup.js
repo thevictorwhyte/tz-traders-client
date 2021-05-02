@@ -127,8 +127,8 @@ const Hero = ({
     country: '',
     zipCode: '',
     email: '',
-    accountType: '',
-    accountCurrency: ''
+    accountType: 'trading',
+    accountCurrency: 'USD'
   });
 
   const classes = useStyles();
@@ -311,7 +311,7 @@ const Hero = ({
                 select
                 placeholder='Account Type'
                 label="Select account type"
-                // defaultValue='USD'
+                defaultValue='trading'
                 // value={currency}
                 onChange={handleChange('accountType')}
                 // helperText="Please select your preffered account currency"
