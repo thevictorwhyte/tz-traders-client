@@ -159,6 +159,7 @@ const WithdrawalPage = (props) => {
             </Button>
               </CardContent>
             </Card>
+        
         </Fragment>
     )
 }

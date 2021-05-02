@@ -91,47 +91,63 @@ export default function InvestPage() {
             <div className="card-header">
               <div className="card-header--title">
                 <small>From TZ Traders</small>
-                <b>How to invest</b>
+                <b>How to deposit</b>
               </div>
             </div>
             <CardContent className="p-3">
               <PerfectScrollbar className="scroll-area-small">
                 <p>
                   Investing with <b>TZ Traders</b> involves a straigtforward process of 3 easy steps <br />
-                  <b>Step One:</b> Make  payment of investment amount of your choice to the bitcoin address below <br />
-                  <b>Step Two:</b> Fill the below  form with the amount you paid in USD and the <b>transaction ID</b> of the payment <br />
-                  <b>Step Three:</b> Click <b>Invest</b> and we will confirm your payment. <br />
+                  <b>Step One:</b> Make  payment of deposit amount of your choice to the bitcoin address below <br />
+                  <b>Step Two:</b> Fill the below  form with the amount you paid and the of the payment <br />
+                  <b>Step Three:</b> Click <b>I have deposited funds</b> and we will confirm your payment and reach out to you through your account manager. <br />
                 </p>
               </PerfectScrollbar>
             </CardContent>
             </Card>
 
-            <TextField
-                fullWidth
-                className="m-2"
-                id="filled-basic"
-                label="Bitcoin address"
-                variant="filled"
-                value="1AgKiZkHYWtFemezKEYXWzhFjsfjFaMUeT"
-            />
-
-            <FormControl
-                fullWidth
-                className={classes.margin}
-                variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-amount">
-                  Amount
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-amount"
-                  value={values.amount}
-                  onChange={handleChange('amount')}
-                  startAdornment={
-                    <InputAdornment position="start">$</InputAdornment>
-                  }
-                  labelWidth={60}
+            <Card className="card-box mb-4">
+              <CardContent className="p-3">
+                <TextField
+                  fullWidth
+                  className="m-2"
+                  id="filled-basic"
+                  label="Bitcoin address"
+                  variant="filled"
+                  value="1AgKiZkHYWtFemezKEYXWzhFjsfjFaMUeT"
                 />
-              </FormControl>
+
+                <FormControl
+                    fullWidth
+                    className={classes.margin}
+                    variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-amount">
+                      Amount
+                    </InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-amount"
+                      value={values.amount}
+                      onChange={handleChange('amount')}
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                      labelWidth={60}
+                    />
+                  </FormControl>
+
+                <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
+                  <span className="btn-wrapper--label">I have deposited funds</span>
+                  <span className="btn-wrapper--icon">
+                  <FontAwesomeIcon icon='chart-bar'/>
+                  </span>
+                </Button>
+              </CardContent>
+            </Card>
+        
+
+            
+
+            
 
               {/* <FormControl
                 fullWidth
@@ -149,12 +165,7 @@ export default function InvestPage() {
                 />
               </FormControl> */}
 
-            <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
-                <span className="btn-wrapper--label">I have deposited funds</span>
-                <span className="btn-wrapper--icon">
-                <FontAwesomeIcon icon='chart-bar'/>
-                </span>
-            </Button>
+            
          
         </Fragment>
     )

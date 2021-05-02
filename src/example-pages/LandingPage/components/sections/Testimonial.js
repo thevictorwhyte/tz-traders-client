@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import  { useHistory } from 'react-router';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
 import  Button from  '../elements/Button'
@@ -24,7 +25,7 @@ const Testimonial = ({
   pushLeft,
   ...props
 }) => {
-
+  const history = useHistory();
   const outerClasses = classNames(
     'testimonial section',
     topOuterDivider && 'has-top-divider',
@@ -76,7 +77,9 @@ const Testimonial = ({
                   {/* <span className="testimonial-item-name text-color-high">Basic plan</span>
                   <span className="text-color-low"> / </span> */}
                   <span className="testimonial-item-link">
-                    <Button tag="a" color="primary" className='bg-plum-plate text-light' wideMobile href="https://cruip.com/">
+                    <Button onClick={() => {
+                      history.push('signup')
+                    }} tag="a" color="primary" className='bg-plum-plate text-light' wideMobile>
                       Choose plan
                     </Button>
                   </span>
@@ -101,7 +104,9 @@ const Testimonial = ({
                   {/* <span className="testimonial-item-name text-color-high">Basic plan</span>
                   <span className="text-color-low"> / </span> */}
                   <span className="testimonial-item-link">
-                    <Button tag="a" color="primary" className='bg-plum-plate text-light' wideMobile href="https://cruip.com/">
+                    <Button onClick={() => {
+                      history.push('signup')
+                    }} tag="a" color="primary" className='bg-plum-plate text-light' wideMobile>
                       Choose plan
                     </Button>
                   </span>
@@ -126,7 +131,9 @@ const Testimonial = ({
                   {/* <span className="testimonial-item-name text-color-high">Basic plan</span>
                   <span className="text-color-low"> / </span> */}
                   <span className="testimonial-item-link">
-                    <Button tag="a" color="primary" className='bg-plum-plate text-light' wideMobile href="https://cruip.com/">
+                    <Button onClick={() => {
+                      history.push('signup')
+                    }} tag="a" color="primary" className='bg-plum-plate text-light' wideMobile>
                       Choose plan
                     </Button>
                   </span>
