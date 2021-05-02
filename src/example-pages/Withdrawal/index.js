@@ -1,22 +1,17 @@
-import React, { Fragment } from 'react';
-
+import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
-    Grid,
-    Input,
     InputLabel,
     InputAdornment,
-    IconButton,
     Card,
-    TextField,
     FormControl,
-    FormHelperText,
-    Divider,
     CardContent,
     Button
   } from '@material-ui/core';
@@ -37,19 +32,66 @@ const useStyles = makeStyles(theme => ({
       width: 200
     }
   }));
-export default function WithdrawalPage() {
-    const classes = useStyles();
+const WithdrawalPage = (props) => {
+  const { accountBalance } = props;
+  const classes = useStyles();
+  const [showAlert, setShowAlert] = useState(false);
+  const  [alertDetails, setAlertDetails] = useState({
+    severity: '',
+    title: '',
+    message: ''
+  })
 
-    const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false
-      });
+  const [values, setValues] = useState({
+      amount: '',
+      btcAddress: ''
+    });
 
+    const handleChange = prop => event => {
+      setValues({ ...values, [prop]: event.target.value });
+      console.log(values)
+    };
+
+    const handleClick = () => {
+      if(values.btcAddress === '') {
+        setAlertDetails({
+          severity: 'error',
+          title: 'Missing BTC address',
+          message: 'Please provide your BTC address to send funds.'
+        
+        });
+        return setShowAlert(true)
+      }
+      if(values.amount <= accountBalance) {
+        setAlertDetails({
+          severity: 'success',
+          title: 'Withdrawal placed successfully',
+          message: 'You have successfully  placed your withdrawal. Your account manager will contact you shortly. Thank you for choosing TZ Traders.'
+        
+        });
+      } else {
+        setAlertDetails({
+          severity: 'error',
+          title: 'Withdrawal amount more than account balance.',
+          message: 'You must be trying to withdraw an amount greater than your account balance. Please input an amount within account balance'
+        
+        });
+
+      }
+      setShowAlert(true)
+    }
     return (
         <Fragment>
+          {
+            showAlert 
+            ?
+            <Alert severity={alertDetails.severity}>
+              <AlertTitle>{alertDetails.title}</AlertTitle>
+              {alertDetails.message}
+            </Alert>
+            :
+            null
+          }
             <Card className="card-box mb-4">
             <div className="card-header">
               <div className="card-header--title">
@@ -67,7 +109,7 @@ export default function WithdrawalPage() {
               </PerfectScrollbar>
             </CardContent>
             </Card>
-            <span>Available for withdrawal: $6,000</span>
+            <span>{`Available for withdrawal: $${accountBalance === 0 ? '0.00' : accountBalance}`}</span>
 
             <FormControl
                 fullWidth
@@ -79,7 +121,7 @@ export default function WithdrawalPage() {
                 <OutlinedInput
                   id="outlined-adornment-amount"
                   value={values.amount}
-                  //onChange={handleChange('amount')}
+                  onChange={handleChange('amount')}
                   startAdornment={
                     <InputAdornment position="start">$</InputAdornment>
                   }
@@ -96,14 +138,14 @@ export default function WithdrawalPage() {
                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-amount"
-                  value={values.amount}
-                  //onChange={handleChange('amount')}
+                  value={values.btcAddress}
+                  onChange={handleChange('btcAddress')}
                   
                   labelWidth={100}
                 />
               </FormControl>
 
-            <Button variant="contained" color="secondary" className="m-2">
+            <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
                 <span className="btn-wrapper--label">Withdraw</span>
                 <span className="btn-wrapper--icon">
                 <FontAwesomeIcon icon='dollar-sign' />
@@ -113,3 +155,9 @@ export default function WithdrawalPage() {
         </Fragment>
     )
 }
+
+const mapStateToProps = state => ({
+  accountBalance: state.user.currentUser.accountBalance || 0,
+})
+
+export default connect(mapStateToProps, null)(WithdrawalPage);

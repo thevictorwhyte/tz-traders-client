@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import  { history, useHistory } from 'react-router';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
 
 const propTypes = {
   ...SectionProps.types
@@ -24,19 +23,7 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-
-  const [videoModalActive, setVideomodalactive] = useState(false);
-
-  const openModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(true);
-  }
-
-  const closeModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(false);
-  }   
-
+  const history = useHistory();
   const outerClasses = classNames(
     'hero section center-content',
     topOuterDivider && 'has-top-divider',
@@ -81,11 +68,11 @@ const Hero = ({
               The most convenient trading interface. Instant access to more than 100 assets of the world's leading companies.                </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
-                  <Button tag="a" color="primary" className='bg-plum-plate text-light' wideMobile href="https://cruip.com/">
+                  <Button onClick={() => history.push('signup')} tag="a" color="primary" className='bg-plum-plate text-light' wideMobile>
                     Get started
                     </Button>
-                  <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">
-                    Contact a representative
+                  <Button onClick={() => history.push('login')} tag="a" color="dark" wideMobile >
+                    Go to  dashboard
                     </Button>
                 </ButtonGroup>
               </div>

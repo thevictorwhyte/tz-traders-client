@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Alert, AlertTitle } from '@material-ui/lab';
+
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
@@ -39,17 +41,52 @@ const useStyles = makeStyles(theme => ({
   }));
 export default function InvestPage() {
     const classes = useStyles();
+    const [showAlert, setShowAlert] = useState(false);
+    const  [alertDetails, setAlertDetails] = useState({
+      severity: '',
+      title: '',
+      message: ''
+    })
 
-    const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false
+    const [values, setValues] = useState({
+        amount: ''
       });
+    
+    const handleChange = prop => event => {
+      setValues({ ...values, [prop]: event.target.value });
+      console.log(values)
+    };
 
+    const handleClick = () => {
+      if(values.amount === '') {
+        setAlertDetails({
+          severity: 'error',
+          title: 'Missing amount deposited',
+          message: 'Please provide the amount you deposited.'
+        
+        });
+        return setShowAlert(true)
+      } else {
+        setAlertDetails({
+          severity: 'success',
+          title: 'Success',
+          message: 'You have successfully deposited pending confirmation. Your account manager will reach out to you shortly.'
+        
+        });
+      }
+    }
     return (
         <Fragment>
+          {
+            showAlert 
+            ?
+            <Alert severity={alertDetails.severity}>
+              <AlertTitle>{alertDetails.title}</AlertTitle>
+              {alertDetails.message}
+            </Alert>
+            :
+            null
+          }
             <Card className="card-box mb-4">
             <div className="card-header">
               <div className="card-header--title">
@@ -88,7 +125,7 @@ export default function InvestPage() {
                 <OutlinedInput
                   id="outlined-adornment-amount"
                   value={values.amount}
-                  //onChange={handleChange('amount')}
+                  onChange={handleChange('amount')}
                   startAdornment={
                     <InputAdornment position="start">$</InputAdornment>
                   }
@@ -96,7 +133,7 @@ export default function InvestPage() {
                 />
               </FormControl>
 
-              <FormControl
+              {/* <FormControl
                 fullWidth
                 className={classes.margin}
                 variant="outlined">
@@ -110,10 +147,10 @@ export default function InvestPage() {
                   
                   labelWidth={100}
                 />
-              </FormControl>
+              </FormControl> */}
 
-            <Button variant="contained" color="secondary" className="m-2">
-                <span className="btn-wrapper--label">Invest</span>
+            <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
+                <span className="btn-wrapper--label">I have deposited funds</span>
                 <span className="btn-wrapper--icon">
                 <FontAwesomeIcon icon='chart-bar'/>
                 </span>

@@ -63,22 +63,6 @@ export default [
     ]
   },
   {
-    "label": "My account",
-    "icon": "AccountCircleIcon",
-    "content": [
-      {
-        "label": "Edit profile",
-        "description": "View and make changes to your profile",
-        "to": "/profile"
-      },
-      {
-        "label": "Security",
-        "description": "Handle account security issues",
-        "to": "/security"
-      }
-    ]
-  },
-  {
     "label": "Deposit",
     "icon": "MonetizationOnIcon",
     "content": [
@@ -107,17 +91,6 @@ export default [
         "label": "History",
         "description": "Handle account security issues",
         "to": "/withdraw"
-      }
-    ]
-  },
-  {
-    "label": "Logout",
-    "icon": "PaymentIcon",
-    "content": [
-      {
-        "label": "Logout",
-        "description": "View and make changes to your profile",
-        "to": "/logout"
       }
     ]
   }
