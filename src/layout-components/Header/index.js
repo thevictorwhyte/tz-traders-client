@@ -68,7 +68,7 @@ const Header = props => {
           </Hidden>
 
           
-          <Hidden >
+          <Hidden mdDown>
             <Box className="d-flex align-items-center">
               <Button
                 href="https://uifort.com/template/carolina-react-admin-dashboard-material-ui-free"
