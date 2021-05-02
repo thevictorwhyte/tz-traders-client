@@ -99,7 +99,7 @@ export default function InvestPage() {
                 <p>
                   Investing with <b>TZ Traders</b> involves a straigtforward process of 3 easy steps <br />
                   <b>Step One:</b> Make  payment of deposit amount of your choice to the bitcoin address below <br />
-                  <b>Step Two:</b> Fill the below  form with the amount you paid and the of the payment <br />
+                  <b>Step Two:</b> Fill in the amount you paid in the form below. <br />
                   <b>Step Three:</b> Click <b>I have deposited funds</b> and we will confirm your payment and reach out to you through your account manager. <br />
                 </p>
               </PerfectScrollbar>
