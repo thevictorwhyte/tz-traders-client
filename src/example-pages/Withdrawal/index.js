@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(3)
     },
     textField: {
-      width: 200
+      width: '100%'
     }
   }));
 const WithdrawalPage = (props) => {
@@ -109,49 +109,56 @@ const WithdrawalPage = (props) => {
               </PerfectScrollbar>
             </CardContent>
             </Card>
-            <span>{`Available for withdrawal: $${accountBalance === 0 ? '0.00' : accountBalance}`}</span>
 
-            <FormControl
-                fullWidth
-                className={classes.margin}
-                variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-amount">
-                  Amount
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-amount"
-                  value={values.amount}
-                  onChange={handleChange('amount')}
-                  startAdornment={
-                    <InputAdornment position="start">$</InputAdornment>
-                  }
-                  labelWidth={60}
-                />
-              </FormControl>
+            <Card className="card-box mb-4">
+              <div className="card-header">
+                <div className="card-header--title">
+                  <span>{`Available for withdrawal: $${accountBalance === 0 ? '0.00' : accountBalance}`}</span>
+                </div>
+              </div>
+              <CardContent className="p-3">
+                <FormControl
+                    fullWidth
+                    className={classes.margin}
+                    variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-amount">
+                      Amount
+                    </InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-amount"
+                      value={values.amount}
+                      onChange={handleChange('amount')}
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                      labelWidth={60}
+                    />
+                  </FormControl>
 
-              <FormControl
-                fullWidth
-                className={classes.margin}
-                variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-amount">
-                  Bitcoin address
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-amount"
-                  value={values.btcAddress}
-                  onChange={handleChange('btcAddress')}
-                  
-                  labelWidth={100}
-                />
-              </FormControl>
+                <FormControl
+                    fullWidth
+                    className={classes.margin}
+                    variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-amount">
+                      Bitcoin address
+                    </InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-amount"
+                      value={values.btcAddress}
+                      onChange={handleChange('btcAddress')}
+                      
+                      labelWidth={100}
+                    />
+                  </FormControl>
 
-            <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
+                <Button onClick={handleClick} variant="contained" color="secondary" className="m-2">
                 <span className="btn-wrapper--label">Withdraw</span>
                 <span className="btn-wrapper--icon">
                 <FontAwesomeIcon icon='dollar-sign' />
                 </span>
             </Button>
-         
+              </CardContent>
+            </Card>
         </Fragment>
     )
 }
