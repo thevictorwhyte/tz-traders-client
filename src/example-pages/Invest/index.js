@@ -73,6 +73,7 @@ export default function InvestPage() {
           message: 'You have successfully deposited pending confirmation. Your account manager will reach out to you shortly.'
         
         });
+        return setShowAlert(true)
       }
     }
     return (
