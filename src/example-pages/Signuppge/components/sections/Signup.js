@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch }  from 'react-redux';
 import { useHistory } from 'react-router';
-import { setCurrentUserStartAsync } from '../../../../redux/user/user.actions';
-
+import { connect } from 'react-redux';
+import { setCurrentUserStartAsync, logOutCurrentUser } from '../../../../redux/user/user.actions';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import Button from '../elements/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -21,38 +22,44 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import {
-  Grid,
-  Input,
   InputLabel,
   InputAdornment,
   MenuItem,
-  Card,
   TextField,
   IconButton,
   FormControl,
-  RadioGroup,
-  FormHelperText,
-  Divider,
-  CardContent
+
 } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import './Signup.scss';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  margin: {
-    margin: theme.spacing(1)
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3)
-  },
-  textField: {
-    width: 200
-  }
-}));
+function Alert(props) {
+  return <MuiAlert style={{marginBottom: '1rem'}} elevation={6} variant="filled" {...props} />;
+}
+
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex',
+//     flexWrap: 'wrap'
+//   },
+//   margin: {
+//     margin: theme.spacing(1)
+//   },
+//   withoutLabel: {
+//     marginTop: theme.spacing(3)
+//   },
+//   textField: {
+//     width: 200
+//   },
+//   snackbar: {
+//     width: '100%',
+//     '& > * + *': {
+//       marginTop: theme.spacing(2),
+//     },
+//   },
+// }));
 
 const accountTypes  = [
   {
@@ -114,9 +121,9 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
+  const { isLoading, hasError } = props;
   const dispatch = useDispatch();
   const history = useHistory();
-  const [videoModalActive, setVideomodalactive] = useState(false);  
   const [handleShowPassword, togglePassword] = useState({
     showPassword: false
   });
@@ -130,12 +137,24 @@ const Hero = ({
     accountType: 'trading',
     accountCurrency: 'USD'
   });
+  const [open, setOpen] = React.useState(false);
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
+  useEffect(() => {
+    if(hasError) {
+      setOpen(true)
+    } else {
+      setOpen(false)
+    }
+  }, [hasError])
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
-    console.log(values)
+  };
+
+  const handleClose = (event) => {
+    setOpen(false)
+    dispatch(logOutCurrentUser())
   };
 
   const outerClasses = classNames(
@@ -167,6 +186,7 @@ const Hero = ({
       {...props}
       className={outerClasses}
     >
+
       <div className="container-sm bg">
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} className={innerClasses}>
           <div className='form__container'>
@@ -179,6 +199,16 @@ const Hero = ({
               </h4>
             </div>
             <div className='form__container__details'>
+              {
+                open 
+                ?
+                <Alert onClose={handleClose} severity="error">
+                  There was an error signin up. Please  try again!
+                </Alert>
+                :
+                null 
+              }
+                 
               <FormControl
                 // style={{width: '50%'}}
                 className='form-control'
@@ -362,10 +392,11 @@ const Hero = ({
               </TextField>
               
               <Button onClick={() => dispatch(setCurrentUserStartAsync(values, history))} tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light sign-btn' wideMobile>
-                Create an account
+                {isLoading ? <CircularProgress size='1.5rem' /> : 'Create an account'}
               </Button>
 
               <span style={{marginTop: 'auto'}} className="text-xxs text-color-dark fw-600">Already have an account? <span className="text-xxs text-color-primary fw-600">Sign in</span></span> 
+              
                 
             </div>
           </div>
@@ -378,4 +409,9 @@ const Hero = ({
 Hero.propTypes = propTypes;
 Hero.defaultProps = defaultProps;
 
-export default Hero;
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+  hasError: state.user.hasError
+})
+
+export default connect(mapStateToProps, null)(Hero);

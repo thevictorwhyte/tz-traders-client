@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
-import { loginUser } from '../../../../redux/user/user.actions';
+import { loginUser, logOutCurrentUser } from '../../../../redux/user/user.actions';
 
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
-// import Input from '../elements/Input';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 import EmailIcon from '@material-ui/icons/Email';
 import Visibility from '@material-ui/icons/Visibility';
@@ -33,9 +33,14 @@ import {
   Divider,
   CardContent
 } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+
 
 import './Login.scss';
 
+function Alert(props) {
+  return <MuiAlert style={{marginBottom: '1rem'}} elevation={6} variant="filled" {...props} />;
+}
 const propTypes = {
   ...SectionProps.types
 }
@@ -54,26 +59,33 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
+  const { hasError, isLoading } = props;
   const history = useHistory();
   const dispatch = useDispatch();
   const [videoModalActive, setVideomodalactive] = useState(false);
   const [handleShowPassword, togglePassword] = useState({
     showPassword: false
   });
-  const [values, setValues] = React.useState({
+
+  const [open, setOpen] = useState(false);
+
+  const [values, setValues] = useState({
     email: '',
     password: ''
   });
 
-  const openModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(true);
-  }
+  useEffect(() => {
+    if(hasError) {
+      setOpen(true)
+    } else {
+      setOpen(false)
+    }
+  }, [hasError])
 
-  const closeModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(false);
-  }   
+  const handleClose = (event) => {
+    setOpen(false)
+    dispatch(logOutCurrentUser())
+  };
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -132,6 +144,15 @@ const Hero = ({
               </h4>
             </div>
             <div className='form__container__details'>
+            {
+                open 
+                ?
+                <Alert onClose={handleClose} severity="error">
+                  There was an error loggin you in. Please check your details and try again!
+                </Alert>
+                :
+                null 
+              }
             <FormControl
                     className='form-control'
                     variant="outlined">
@@ -186,7 +207,7 @@ const Hero = ({
               <Button onClick={() => {
                 dispatch(loginUser(values, history))
               }} tag="a" color="primary" style={{borderRadius: '100px'}} className='bg-plum-plate text-light' wideMobile>
-                Log in
+                {isLoading ? <CircularProgress size='1.5rem' /> : 'Login'}
               </Button>
               <span className="text-xxs text-color-primary fw-400">Forgot password?</span>
 
@@ -200,7 +221,9 @@ const Hero = ({
   );
 }
 
-Hero.propTypes = propTypes;
-Hero.defaultProps = defaultProps;
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+  hasError: state.user.hasLoginError
+})
 
-export default Hero;
+export default connect(mapStateToProps, null)(Hero);

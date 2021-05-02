@@ -18,6 +18,10 @@ export const  logOutCurrentUser = () => ({
     type: userTypes.LOG_OUT_USER
 })
 
+export const loginUserFailure = () => ({
+    type: userTypes.LOG_IN_USER_FAILURE
+});
+
 export const setCurrentUserStartAsync = (userData, history) => {
 
     return dispatch => {
@@ -46,7 +50,7 @@ export const loginUser = (userData, history) => {
                 history.push('dashboard')
             })
             .catch(err => {
-                dispatch(setCurrentUserFailure())
+                dispatch(loginUserFailure())
                 if(process.env.NODE_ENV === 'development') {
                     console.log(err)
                 }
