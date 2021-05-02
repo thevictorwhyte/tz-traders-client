@@ -114,7 +114,7 @@ export default function InvestPage() {
                   id="filled-basic"
                   label="Bitcoin address"
                   variant="filled"
-                  value="1AgKiZkHYWtFemezKEYXWzhFjsfjFaMUeT"
+                  value="1G2nb8bR2GDTSDECuYgeY1vWjUHcjju3c2"
                 />
 
                 <FormControl
